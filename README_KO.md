@@ -89,11 +89,11 @@ Phase 6: 검증 및 테스트
 /plugin marketplace add revfactory/harness
 ```
 
-**B. 포크 — 한국어 페르소나 분기까지 함께 (PR 머지 전, 권장)**
+**B. 포크 — 한국어 페르소나 분기까지 함께 (PR #9 머지 전, 권장)**
 ```shell
-/plugin marketplace add hongsw/harness@feat/korean-persona-injection
+/plugin marketplace add hongsw/harness
 ```
-이 분기는 기존 `harness`에 더해 `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` 3종 + Codex CLI 호환 + 검증 산출물을 포함한다. PR #9 머지 후엔 A로 자동 통합된다. 자세한 내용: [한국어 페르소나 분기](#한국어-페르소나-분기-korean-persona-injection--fork-only-pr-예정) 섹션.
+포크의 `main`이 `feat/korean-persona-injection`과 동기화되어 있어 브랜치 ref 없이 설치된다. 기존 `harness`에 더해 `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` 3종 + Codex CLI 호환 + 검증 산출물 포함. PR #9 머지 후엔 A(`revfactory/harness`)로 통합된다. 자세한 내용: [한국어 페르소나 분기](#한국어-페르소나-분기-korean-persona-injection--fork-only-pr-예정) 섹션.
 
 #### 플러그인 설치
 ```shell
@@ -331,7 +331,7 @@ cd harness
 
 ```bash
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-    --repo hongsw/harness --ref feat/korean-persona-injection \
+    --repo hongsw/harness \
     --path skills/korean-persona-search \
     --path skills/korean-voice-adapter \
     --path skills/korean-persona-harness
@@ -341,7 +341,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 #### 3. Claude Code 플러그인 마켓플레이스 (포크 직접)
 
 ```
-/plugin marketplace add hongsw/harness@feat/korean-persona-injection
+/plugin marketplace add hongsw/harness
 /plugin install harness
 ```
 

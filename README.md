@@ -100,11 +100,11 @@ Phase 6: Validation & Testing
 /plugin marketplace add revfactory/harness
 ```
 
-**B. Fork — includes the Korean Persona Injection branch (recommended until PR lands)**
+**B. Fork — includes the Korean Persona Injection branch (recommended until PR #9 lands)**
 ```shell
-/plugin marketplace add hongsw/harness@feat/korean-persona-injection
+/plugin marketplace add hongsw/harness
 ```
-This branch adds `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` (3 skills), Codex CLI compatibility, and verification artifacts on top of the existing `harness`. After PR #9 merges into upstream, switch back to A. Details: [Korean Persona Injection](#korean-persona-injection-fork-branch--pr-pending) section below.
+The fork's `main` is fast-forwarded to `feat/korean-persona-injection`, so no branch ref is needed. This adds `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` (3 skills), Codex CLI compatibility, and verification artifacts on top of the existing `harness`. After PR #9 merges into upstream, switch back to A (`revfactory/harness`). Details: [Korean Persona Injection](#korean-persona-injection-fork-branch--pr-pending) section below.
 
 #### Install the plugin
 ```shell
@@ -298,13 +298,13 @@ cd harness
 
 # OR install directly via Codex's skill-installer
 python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-    --repo hongsw/harness --ref feat/korean-persona-injection \
+    --repo hongsw/harness \
     --path skills/korean-persona-search \
     --path skills/korean-voice-adapter \
     --path skills/korean-persona-harness
 
 # OR add the fork as a Claude Code plugin marketplace
-# /plugin marketplace add hongsw/harness@feat/korean-persona-injection
+# /plugin marketplace add hongsw/harness
 # /plugin install harness
 
 # Dataset cache (~few GB, shared between both runtimes; first run only)
