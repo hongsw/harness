@@ -95,6 +95,16 @@ Phase 6: 검증 및 테스트
 ```
 포크의 `main`이 `feat/korean-persona-injection`과 동기화되어 있어 브랜치 ref 없이 설치된다. 기존 `harness`에 더해 `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` 3종 + Codex CLI 호환 + 검증 산출물 포함. PR #9 머지 후엔 A(`revfactory/harness`)로 통합된다. 자세한 내용: [한국어 페르소나 분기](#한국어-페르소나-분기-korean-persona-injection--fork-only-pr-예정) 섹션.
 
+> ⚠️ **이미 `revfactory/harness`를 설치한 사용자는 먼저 제거 후 포크 설치 필요**
+> 두 마켓플레이스의 이름(`harness-marketplace`)과 플러그인 이름(`harness`)이 동일하여 그대로 추가하면 충돌하거나 한쪽이 가려진다. 아래 4단계로 깔끔히 전환:
+> ```shell
+> /plugin uninstall harness@harness         # 1. 기존 플러그인 제거
+> /plugin marketplace remove harness-marketplace   # 2. 기존 마켓플레이스 제거
+> /plugin marketplace add hongsw/harness    # 3. 포크 마켓플레이스 추가
+> /plugin install harness@harness           # 4. 플러그인 재설치 (포크에서)
+> ```
+> PR #9 머지 후 업스트림으로 돌아가려면: 위 1·2단계 후 `add revfactory/harness`로 다시 설치. 데이터셋 캐시(`~/.cache/korean-persona-search/`)는 보존되므로 재다운로드 불필요.
+
 #### 플러그인 설치
 ```shell
 /plugin install harness@harness

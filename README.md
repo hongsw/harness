@@ -106,6 +106,16 @@ Phase 6: Validation & Testing
 ```
 The fork's `main` is fast-forwarded to `feat/korean-persona-injection`, so no branch ref is needed. This adds `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` (3 skills), Codex CLI compatibility, and verification artifacts on top of the existing `harness`. After PR #9 merges into upstream, switch back to A (`revfactory/harness`). Details: [Korean Persona Injection](#korean-persona-injection-fork-branch--pr-pending) section below.
 
+> ⚠️ **Already installed `revfactory/harness`? Uninstall it first, then install the fork.**
+> Both marketplaces use the same name (`harness-marketplace`) and plugin name (`harness`), so adding the fork on top would conflict or shadow the upstream. Clean migration in 4 steps:
+> ```shell
+> /plugin uninstall harness@harness                # 1. Remove the plugin
+> /plugin marketplace remove harness-marketplace   # 2. Remove the marketplace
+> /plugin marketplace add hongsw/harness           # 3. Add the fork's marketplace
+> /plugin install harness@harness                  # 4. Reinstall (now from fork)
+> ```
+> To switch back after PR #9 merges: repeat steps 1–2, then `add revfactory/harness`. The dataset cache (`~/.cache/korean-persona-search/`) persists, so no redownload needed.
+
 #### Install the plugin
 ```shell
 /plugin install harness@harness
