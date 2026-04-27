@@ -17,6 +17,7 @@
 
 - 기존 `harness` 스킬은 변경 없음. 두 스킬은 description으로 자동 트리거 분기.
 - 데이터 라이선스 CC BY 4.0 — 생성된 모든 에이전트 정의 하단에 uuid + attribution 자동 삽입.
+- **Codex CLI 런타임 호환** — SKILL.md 포맷이 Claude Code와 Codex 양쪽에 동일하게 적용. 설치 스크립트 `scripts/install-korean-persona.sh` 추가 (`--target codex|claude-code|both`). Codex `skill-installer`로 GitHub 직접 설치 경로 지원. 설치 가이드 `docs/install-korean-persona.md` 신설.
 
 ## [1.2.1] - 2026-04-18
 

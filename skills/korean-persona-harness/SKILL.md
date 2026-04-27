@@ -132,8 +132,12 @@ QA fail이면 자동으로 Phase 2로 1회 회귀(재샘플링). 두 번째 fail
 ### Phase 6: 사용자 출력
 
 QA pass 후:
-1. `_workspace/.../04_agents/*.md` → 사용자의 `.claude/agents/` 또는 사용자 지정 경로로 복사
-2. CLAUDE.md에 하네스 변경 이력 한 줄 추가 (해당 프로젝트에 CLAUDE.md가 있으면)
+1. `_workspace/.../04_agents/*.md` → 적절한 에이전트 디렉토리로 복사:
+   - **Claude Code 런타임**: 프로젝트의 `.claude/agents/`
+   - **Codex CLI 런타임**: `${CODEX_HOME:-~/.codex}/agents/` (또는 프로젝트 단위로 사용자가 지정한 경로)
+   - 사용자가 명시적으로 출력 경로를 지정하면 그곳 우선
+   - 런타임 감지: `CODEX_HOME` 환경변수 존재 + Codex 컨텍스트 → Codex 경로, 그 외 → Claude Code
+2. CLAUDE.md(또는 Codex의 `~/.codex/rules/`)에 하네스 변경 이력 한 줄 추가
 3. 결과 보고 — 생성된 에이전트 목록, 각 페르소나의 한 줄 소개, 다음 추천 단계
 
 ## 데이터 전달 프로토콜
@@ -161,12 +165,19 @@ QA pass 후:
 - [ ] 최종 에이전트 정의가 `.claude/agents/`에 복사됨
 - [ ] 출처 표기 (CC BY 4.0)가 각 정의 하단에 있음
 
+## 런타임 호환
+
+본 스킬은 **Claude Code**와 **Codex CLI** 두 런타임에서 동일하게 작동한다. 스킬 파일 포맷이 양쪽 호환이며, 의존 스크립트는 환경 변수만 다를 뿐 같다.
+
+설치 방법은 `docs/install-korean-persona.md` 참조 — 한 줄 설치 스크립트 또는 Codex `skill-installer`/Claude Code 플러그인 마켓플레이스로 가능.
+
 ## 참조
 
 - 메타 에이전트 프롬프트 템플릿: `references/agents/`
 - 검색 스킬: `../korean-persona-search/SKILL.md`
 - 화법 어댑터 스킬: `../korean-voice-adapter/SKILL.md`
 - 데이터셋: https://huggingface.co/datasets/nvidia/Nemotron-Personas-Korea (CC BY 4.0)
+- 설치 가이드 (Claude Code + Codex): `../../docs/install-korean-persona.md`
 
 ## 테스트 시나리오
 

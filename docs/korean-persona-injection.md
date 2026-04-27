@@ -49,17 +49,37 @@ skills/
 
 산출물은 `.claude/agents/` 또는 사용자 지정 경로.
 
+## 설치 (Claude Code + Codex CLI 양쪽)
+
+스킬은 **두 런타임에서 동일하게 작동**한다 (SKILL.md 포맷 호환). 자세한 설치는 [install-korean-persona.md](./install-korean-persona.md) 참조.
+
+**한 줄 설치**:
+```bash
+./scripts/install-korean-persona.sh --target both    # Claude Code + Codex 모두
+./scripts/install-korean-persona.sh --target codex   # Codex만
+./scripts/install-korean-persona.sh --target claude-code   # Claude Code만
+```
+
+**Codex skill-installer로 GitHub에서 직접**:
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+    --repo hongsw/harness --ref main \
+    --path skills/korean-persona-search \
+    --path skills/korean-voice-adapter \
+    --path skills/korean-persona-harness
+```
+
 ## 사전 준비
 
 ```bash
-# 의존성
+# 의존성 (양 런타임 공통)
 pip install huggingface_hub pyarrow
 
-# 데이터셋 캐시 (수 GB, 최초 1회)
-python skills/korean-persona-search/scripts/download.py
+# 데이터셋 캐시 (수 GB, 최초 1회 — Claude Code/Codex 공유)
+python3 $SKILL_DIR/korean-persona-search/scripts/download.py
 
-# 또는 빠른 테스트용
-python skills/korean-persona-search/scripts/download.py --shards 1
+# 빠른 테스트용
+python3 $SKILL_DIR/korean-persona-search/scripts/download.py --shards 1
 ```
 
 캐시 경로: `~/.cache/korean-persona-search/` (환경변수 `KOREAN_PERSONA_CACHE_DIR`로 변경).
