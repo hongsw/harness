@@ -1,15 +1,15 @@
 {
-  "name": "harness-marketplace",
+  "name": "harness-korean-marketplace",
   "owner": {
-    "name": "revfactory",
-    "email": "",
-    "url": "https://github.com/revfactory"
+    "name": "hongsw",
+    "email": "1100974+hongsw@users.noreply.github.com",
+    "url": "https://github.com/hongsw"
   },
   "plugins": [
     {
-      "name": "harness",
+      "name": "harness-korean",
       "source": "./",
-      "description": "에이전트 팀 & 스킬 아키텍트. 도메인/프로젝트에 맞는 하네스를 구성하고, 전문 에이전트를 정의하며, 에이전트가 사용할 스킬을 생성하는 메타 스킬.",
+      "description": "에이전트 팀 & 스킬 아키텍트 + 한국어 퍼소나(Nemotron-Personas-Korea, 100만 행, CC BY 4.0) 자동 주입. 본가 revfactory/harness의 한국 페르소나 분기 — 본가와 동시 설치 가능 (이름이 다름).",
       "version": "1.2.0"
     }
   ]

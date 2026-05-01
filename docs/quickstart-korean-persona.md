@@ -14,10 +14,10 @@ Claude Code 세션에서:
 
 ```
 /plugin marketplace add hongsw/harness
-/plugin install harness@harness
+/plugin install harness-korean@harness-korean-marketplace
 ```
 
-> 본가 머지 후에는 `hongsw/harness` 대신 `revfactory/harness`로 바꿔 쓰면 된다. 두 마켓플레이스의 `name`(둘 다 `harness-marketplace`)과 플러그인 `name`(둘 다 `harness`)이 동일하므로 동시에 추가하면 그림자 충돌이 난다 — 한쪽만 유지할 것.
+> 본 포크는 마켓플레이스 이름(`harness-korean-marketplace`)과 플러그인 이름(`harness-korean`)을 본가와 다르게 지어 두었다. 본가(`revfactory/harness` → `harness@harness-marketplace`)와 **동시 설치 가능** — 충돌 없음.
 
 설치 후 **3번(재시작)**으로 이동.
 
@@ -95,7 +95,7 @@ python3 skills/korean-persona-search/scripts/download.py --shards 1
 
 설치 확인 (재시작 후):
 
-- Claude Code: `/plugin list` — `harness` 항목 확인
+- Claude Code: `/plugin list` — `harness-korean` 항목 확인 (본가 동시 설치 시 `harness`도 같이 보임)
 - Codex: `ls ${CODEX_HOME:-~/.codex}/skills/` — 3개 디렉토리 확인
 
 ## 4. 첫 실행 검증
@@ -114,7 +114,7 @@ python3 skills/korean-persona-search/scripts/download.py --shards 1
 한국인 캐릭터로 UX 인터뷰 가상 패널 6명 구성해줘
 ```
 
-**English 트리거** (description에 영어 키워드를 병기한 경우 — 별도 PR로 진행 중):
+**English 트리거** (description에 영어 키워드 병기됨):
 
 ```
 Make a Korean persona team for a food-tech startup (PO, designer, backend, CS, marketer).
@@ -138,7 +138,7 @@ Make a Korean persona team for a food-tech startup (PO, designer, backend, CS, m
 | `ModuleNotFoundError: huggingface_hub` | 의존성 미설치 | `pip install huggingface_hub pyarrow` |
 | 검색 결과 0건 | 필터가 너무 좁음 (예: "30대 여성, 제주, 의사 5명") | 큐레이터가 자동으로 조건 완화 권장. 직접 호출 시 `--age-min`/`--age-max` 등을 늘릴 것 |
 | 데이터셋 캐시를 찾을 수 없음 | 다운로드 미수행 | 2번 단계 실행 |
-| 두 마켓플레이스 동시 추가 후 그림자 충돌 | `name`이 동일 | `/plugin marketplace remove`로 한쪽 제거 후 다시 시도 |
+| 두 플러그인 동시 설치 시 메타 스킬 `harness`가 한쪽에서 가려짐 | 양 플러그인 모두에 같은 이름의 스킬 포함 | 메타 스킬만 필요하면 본가 단독 / 한국 페르소나가 핵심이면 포크 단독 설치 권장 |
 | Codex 설치 후에도 스킬이 안 보임 | 재시작 안 함 | Codex 종료 → 재실행 |
 
 ## 라이선스 / 출처

@@ -93,33 +93,28 @@ Phase 6: Validation & Testing
 
 ### Via Marketplace
 
-#### Add the marketplace
+This fork (`hongsw/harness`) is the **Korean persona-injected variant** of `revfactory/harness`. The marketplace and plugin names differ from upstream so the two coexist — install both side-by-side without conflict.
 
-**A. Upstream (just the `harness` skill)**
-```shell
-/plugin marketplace add revfactory/harness
-```
+| | Marketplace name | Plugin name |
+|---|---|---|
+| Upstream (general harness) | `harness-marketplace` | `harness` |
+| This fork (+ Korean persona) | `harness-korean-marketplace` | `harness-korean` |
 
-**B. Fork — includes the Korean Persona Injection branch (recommended until PR #9 lands)**
+#### Install the fork (this repo)
 ```shell
 /plugin marketplace add hongsw/harness
+/plugin install harness-korean@harness-korean-marketplace
 ```
-The fork's `main` is fast-forwarded to `feat/korean-persona-injection`, so no branch ref is needed. This adds `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` (3 skills), Codex CLI compatibility, and verification artifacts on top of the existing `harness`. After PR #9 merges into upstream, switch back to A (`revfactory/harness`). Details: [Korean Persona Injection](#korean-persona-injection-fork-branch--pr-pending) section below.
 
-> ⚠️ **Already installed `revfactory/harness`? Uninstall it first, then install the fork.**
-> Both marketplaces use the same name (`harness-marketplace`) and plugin name (`harness`), so adding the fork on top would conflict or shadow the upstream. Clean migration in 4 steps:
-> ```shell
-> /plugin uninstall harness@harness                # 1. Remove the plugin
-> /plugin marketplace remove harness-marketplace   # 2. Remove the marketplace
-> /plugin marketplace add hongsw/harness           # 3. Add the fork's marketplace
-> /plugin install harness@harness                  # 4. Reinstall (now from fork)
-> ```
-> To switch back after PR #9 merges: repeat steps 1–2, then `add revfactory/harness`. The dataset cache (`~/.cache/korean-persona-search/`) persists, so no redownload needed.
+This installs the harness meta-skill **plus** `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` (3 Korean-flavored skills), Codex CLI compatibility, and verification artifacts.
 
-#### Install the plugin
+#### (Optional) Install upstream alongside
 ```shell
-/plugin install harness@harness
+/plugin marketplace add revfactory/harness
+/plugin install harness@harness-marketplace
 ```
+
+Both can be active at the same time. If you only want the meta-skill and not the Korean additions, install upstream alone.
 
 ### Direct Installation as Global Skill
 
@@ -315,7 +310,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 
 # OR add the fork as a Claude Code plugin marketplace
 # /plugin marketplace add hongsw/harness
-# /plugin install harness
+# /plugin install harness-korean@harness-korean-marketplace
 
 # Dataset cache (~few GB, shared between both runtimes; first run only)
 pip install huggingface_hub pyarrow

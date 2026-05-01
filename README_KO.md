@@ -82,33 +82,28 @@ Phase 6: 검증 및 테스트
 
 ### 마켓플레이스 등록 후 설치
 
-#### 마켓플레이스 추가
+본 포크(`hongsw/harness`)는 **한국어 페르소나 주입** 분기다. 마켓플레이스/플러그인 이름이 본가와 다르게 지어져 있어 둘을 동시에 설치해도 충돌하지 않는다.
 
-**A. 공식 (`harness` 스킬만 필요)**
-```shell
-/plugin marketplace add revfactory/harness
-```
+| | 마켓플레이스 이름 | 플러그인 이름 |
+|---|---|---|
+| 본가 (일반 harness) | `harness-marketplace` | `harness` |
+| 본 포크 (+ 한국 페르소나) | `harness-korean-marketplace` | `harness-korean` |
 
-**B. 포크 — 한국어 페르소나 분기까지 함께 (PR #9 머지 전, 권장)**
+#### 포크 설치 (본 리포)
 ```shell
 /plugin marketplace add hongsw/harness
+/plugin install harness-korean@harness-korean-marketplace
 ```
-포크의 `main`이 `feat/korean-persona-injection`과 동기화되어 있어 브랜치 ref 없이 설치된다. 기존 `harness`에 더해 `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` 3종 + Codex CLI 호환 + 검증 산출물 포함. PR #9 머지 후엔 A(`revfactory/harness`)로 통합된다. 자세한 내용: [한국어 페르소나 분기](#한국어-페르소나-분기-korean-persona-injection--fork-only-pr-예정) 섹션.
 
-> ⚠️ **이미 `revfactory/harness`를 설치한 사용자는 먼저 제거 후 포크 설치 필요**
-> 두 마켓플레이스의 이름(`harness-marketplace`)과 플러그인 이름(`harness`)이 동일하여 그대로 추가하면 충돌하거나 한쪽이 가려진다. 아래 4단계로 깔끔히 전환:
-> ```shell
-> /plugin uninstall harness@harness         # 1. 기존 플러그인 제거
-> /plugin marketplace remove harness-marketplace   # 2. 기존 마켓플레이스 제거
-> /plugin marketplace add hongsw/harness    # 3. 포크 마켓플레이스 추가
-> /plugin install harness@harness           # 4. 플러그인 재설치 (포크에서)
-> ```
-> PR #9 머지 후 업스트림으로 돌아가려면: 위 1·2단계 후 `add revfactory/harness`로 다시 설치. 데이터셋 캐시(`~/.cache/korean-persona-search/`)는 보존되므로 재다운로드 불필요.
+설치되는 것: harness 메타 스킬 **+** `korean-persona-search` / `korean-voice-adapter` / `korean-persona-harness` (3종) + Codex CLI 호환 + 검증 산출물.
 
-#### 플러그인 설치
+#### (선택) 본가도 함께 설치
 ```shell
-/plugin install harness@harness
+/plugin marketplace add revfactory/harness
+/plugin install harness@harness-marketplace
 ```
+
+둘 다 동시 활성 가능. 한국 페르소나 분기가 필요 없고 메타 스킬만 원하면 본가 단독으로 설치하라.
 
 ### 글로벌 스킬로 직접 설치
 
@@ -352,7 +347,7 @@ python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-githu
 
 ```
 /plugin marketplace add hongsw/harness
-/plugin install harness
+/plugin install harness-korean@harness-korean-marketplace
 ```
 
 #### 4. 데이터셋 캐시 (최초 1회, 양 런타임 공유)
