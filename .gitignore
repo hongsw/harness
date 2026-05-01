@@ -1,2 +1,8 @@
 .DS_Store
 .claude/
+
+# Python / pytest
+.venv*
+__pycache__/
+.pytest_cache/
+*.pyc
