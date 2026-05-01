@@ -1,6 +1,6 @@
 ---
 name: korean-persona-harness
-description: "한국어 퍼소나(Nemotron-Personas-Korea) 기반으로 임의 도메인의 에이전트 팀을 만들어주는 메타 하네스 오케스트레이터. 한국 업무·문화·언어 감각이 살아있는 에이전트가 필요할 때 사용한다. '한국어 페르소나로 팀 만들어줘', '한국인 캐릭터 에이전트 만들어줘', '한국 X 도메인 하네스 만들어줘', '한국 페르소나로 X 시나리오 에이전트 생성', '한국어 화법으로 다시 만들어줘', '페르소나 다시 뽑아서 팀 재구성', 후속 요청('업데이트', '재실행', '보완', '추가')에서도 트리거된다. 일반 harness와 달리 한국어·한국 문화 맥락에 특화."
+description: "한국어 퍼소나(Nemotron-Personas-Korea) 기반으로 임의 도메인의 에이전트 팀을 만들어주는 메타 하네스 오케스트레이터. 한국 업무·문화·언어 감각이 살아있는 에이전트가 필요할 때 사용한다. '한국어 페르소나로 팀 만들어줘', '한국인 캐릭터 에이전트 만들어줘', '한국 X 도메인 하네스 만들어줘', '한국 페르소나로 X 시나리오 에이전트 생성', '한국어 화법으로 다시 만들어줘', '페르소나 다시 뽑아서 팀 재구성', 후속 요청('업데이트', '재실행', '보완', '추가')에서도 트리거된다. 일반 harness와 달리 한국어·한국 문화 맥락에 특화. Also triggers on English requests: 'make/build a Korean persona team', 'create Korean character agents', 'Korean cultural agents for <domain>', 'rebuild team with Korean personas'."
 ---
 
 # Korean Persona Harness — 한국어 퍼소나 메타 하네스

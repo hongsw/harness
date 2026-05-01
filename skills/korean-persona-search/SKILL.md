@@ -1,6 +1,6 @@
 ---
 name: korean-persona-search
-description: "한국어 퍼소나 데이터셋(nvidia/Nemotron-Personas-Korea, 100만 행)에서 직무·지역·연령·학력 등 다축 조건으로 후보를 검색하고 다양성 샘플링으로 N개를 반환. 한국 페르소나/한국인 캐릭터/한국 시나리오 에이전트 정의에 근거가 필요하거나, '한국어 페르소나 찾아줘', '한국 직장인 페르소나', '특정 지역/연령대 페르소나'를 요청하면 반드시 이 스킬을 사용할 것. 데이터셋 다운로드·로컬 캐시·Parquet 필터·다양성 샘플링까지 일괄 처리한다."
+description: "한국어 퍼소나 데이터셋(nvidia/Nemotron-Personas-Korea, 100만 행)에서 직무·지역·연령·학력 등 다축 조건으로 후보를 검색하고 다양성 샘플링으로 N개를 반환. 한국 페르소나/한국인 캐릭터/한국 시나리오 에이전트 정의에 근거가 필요하거나, '한국어 페르소나 찾아줘', '한국 직장인 페르소나', '특정 지역/연령대 페르소나'를 요청하면 반드시 이 스킬을 사용할 것. 데이터셋 다운로드·로컬 캐시·Parquet 필터·다양성 샘플링까지 일괄 처리한다. Also triggers on English requests: 'find/search Korean personas', 'sample from Nemotron-Personas-Korea', 'Korean persona candidates by job/age/region'."
 ---
 
 # Korean Persona Search — Nemotron-Personas-Korea Lookup

@@ -1,6 +1,6 @@
 ---
 name: korean-voice-adapter
-description: "Nemotron-Personas-Korea 등에서 가져온 raw 한국어 퍼소나 카드를 에이전트 정의에 적합한 한국 직장 매너·존댓말 레벨·업종별 화법으로 가공한다. 한국어 에이전트 정의에 voice/tone 가이드가 필요하거나, '한국 페르소나에 말투/화법 입혀줘', '존댓말 레벨 결정해줘', '한국 업무 톤으로 다듬어줘'를 요청하면 이 스킬을 사용할 것. 호칭·존댓말·보고 매너·산업별 어휘를 결정한다."
+description: "Nemotron-Personas-Korea 등에서 가져온 raw 한국어 퍼소나 카드를 에이전트 정의에 적합한 한국 직장 매너·존댓말 레벨·업종별 화법으로 가공한다. 한국어 에이전트 정의에 voice/tone 가이드가 필요하거나, '한국 페르소나에 말투/화법 입혀줘', '존댓말 레벨 결정해줘', '한국 업무 톤으로 다듬어줘'를 요청하면 이 스킬을 사용할 것. 호칭·존댓말·보고 매너·산업별 어휘를 결정한다. Also triggers on English requests: 'apply Korean voice/tone', 'add Korean honorifics', 'tone for Korean workplace', 'industry-specific Korean speech'."
 ---
 
 # Korean Voice Adapter — 한국어 퍼소나 화법·업무문화 어댑터
