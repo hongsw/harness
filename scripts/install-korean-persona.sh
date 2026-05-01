@@ -154,13 +154,19 @@ main() {
 [done] 설치 완료.
 
 다음 단계:
-  1. 데이터셋 캐시 다운로드 (최초 1회, 수 GB):
-       python3 \$DEST/korean-persona-search/scripts/download.py
-     (개발 테스트용으론 --shards 1)
-  2. 런타임 재시작:
-       - Claude Code: 새 세션 시작 또는 /reload
-       - Codex: 'Restart Codex to pick up new skills.'
-  3. 사용 예: 한국어 페르소나로 5인 푸드테크 팀 만들어줘
+  1. 의존성 + 데이터셋 캐시 (최초 1회, 수 GB):
+       pip install huggingface_hub pyarrow
+       python3 skills/korean-persona-search/scripts/download.py
+     (빠른 테스트용으론 --shards 1)
+  2. 런타임 재시작 (스킬은 새 세션에서만 로드됨):
+       - Claude Code: 현재 세션 종료(/exit 또는 창 닫기) → 'claude' 재실행
+                      확인: 새 세션에서 '/plugin list'
+       - Codex CLI:   Codex 종료 → 재실행
+                      확인: ls \${CODEX_HOME:-~/.codex}/skills/
+  3. 첫 실행 (한국어):
+       한국어 페르소나로 5인 푸드테크 팀 만들어줘
+     (영어 트리거를 병기한 빌드라면): make a Korean persona team for ...
+  4. 상세 가이드: docs/quickstart-korean-persona.md
 EOF
 }
 
