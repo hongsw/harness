@@ -269,9 +269,13 @@ Harness는 Claude Code / 에이전트 프레임워크 생태계에서 혼자가 
 
 > 논문 전문: *Hwang, M. (2026). Harness: Structured Pre-Configuration for Enhancing LLM Code Agent Output Quality.*
 
-## 한국어 페르소나 분기 (Korean Persona Injection) — Fork-only, PR 예정
+## 한국어 페르소나 분기 (Korean Persona Injection) — 본 포크
 
-`hongsw/harness:feat/korean-persona-injection` 포크에서 진행 중인 보강. 임의 도메인의 에이전트 팀에 **NVIDIA Nemotron-Personas-Korea**(100만 행, CC BY 4.0) 합성 페르소나를 런타임 동적 매핑하여, 한국 업무 매너·존댓말·산업 어휘가 살아있는 에이전트 정의를 생성한다. 기존 `harness` 스킬은 변경 없이 description으로 트리거 분기.
+`hongsw/harness` 포크의 핵심 분기. 임의 도메인의 에이전트 팀에 **NVIDIA Nemotron-Personas-Korea**(100만 행, CC BY 4.0) **data-grounded synthetic** 페르소나를 런타임 동적 매핑하여, 한국 업무 매너·존댓말·산업 어휘가 살아있는 에이전트 정의를 생성한다. 페르소나는 합성(실제 한국인 응답이 아님), 인구통계 분포는 실제 한국 반영. 기존 `harness` 스킬은 변경 없이 description으로 트리거 분기.
+
+> **왜 합성-grounded인가** — [`docs/why-data-grounded-synthetic.md`](docs/why-data-grounded-synthetic.md) 참조. 합성 페르소나의 진짜 가치는 *콘텐츠 차별화*가 아니라 *eval substrate 차별화*. [`hongsw/clawfit`](https://github.com/hongsw/clawfit) 같은 추천 엔진과 직결.
+
+> **박제된 산출물** — [`examples/korean-persona/`](examples/korean-persona/) 참조. baseline vs grounded 비교가 보존됨. 현재 1개 시나리오(백엔드 개발자), 추가 기여 환영.
 
 ### 추가 스킬 (3개, 비침습)
 
@@ -316,47 +320,20 @@ Harness는 Claude Code / 에이전트 프레임워크 생태계에서 혼자가 
 | RFC·기술 문서 | 보통 |
 | 인프라·아키텍처 설계 | 낮음 (기본 `harness`가 적합) |
 
-### 설치 — 포크 `hongsw/harness`에서 (PR 머지 전까지)
+### 설치 — [`docs/quickstart-korean-persona.md`](docs/quickstart-korean-persona.md) 전체 가이드 참조
 
-상위 리포(`revfactory/harness`)에는 이 분기가 아직 머지되지 않았으므로, 머지 전에는 **포크에서 직접 설치**한다. 머지 후에는 `hongsw/harness` → `revfactory/harness`로 출처를 바꾸면 된다.
-
-#### 1. 클론 + 한 줄 설치 (권장)
-
-```bash
-git clone -b feat/korean-persona-injection https://github.com/hongsw/harness.git
-cd harness
-
-./scripts/install-korean-persona.sh --target both           # Claude Code + Codex 동시
-# 또는
-./scripts/install-korean-persona.sh --target codex          # Codex만 (~/.codex/skills/)
-./scripts/install-korean-persona.sh --target claude-code    # Claude Code만 (./.claude/skills/)
-```
-
-#### 2. Codex skill-installer로 GitHub 직접
-
-```bash
-python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-    --repo hongsw/harness \
-    --path skills/korean-persona-search \
-    --path skills/korean-voice-adapter \
-    --path skills/korean-persona-harness
-# 설치 후 Codex 재시작 — "Restart Codex to pick up new skills."
-```
-
-#### 3. Claude Code 플러그인 마켓플레이스 (포크 직접)
-
+빠른 경로 (Claude Code 마켓플레이스):
 ```
 /plugin marketplace add hongsw/harness
 /plugin install harness-korean@harness-korean-marketplace
 ```
 
-#### 4. 데이터셋 캐시 (최초 1회, 양 런타임 공유)
-
+또는 한 줄 스크립트 (양 런타임):
 ```bash
+git clone https://github.com/hongsw/harness.git && cd harness
+./scripts/install-korean-persona.sh --target both           # Claude Code + Codex 동시
 pip install huggingface_hub pyarrow
-python3 $SKILL_DIR/korean-persona-search/scripts/download.py            # 전체 (수 GB)
-python3 $SKILL_DIR/korean-persona-search/scripts/download.py --shards 1 # 빠른 테스트
-# 캐시: ~/.cache/korean-persona-search/ (KOREAN_PERSONA_CACHE_DIR로 변경)
+python3 skills/korean-persona-search/scripts/download.py     # 데이터셋 캐시, 최초 1회
 ```
 
 ### 실행 모드 선택 — 영어/일반 에이전트 vs 한국 페르소나 에이전트
@@ -382,7 +359,7 @@ python3 $SKILL_DIR/korean-persona-search/scripts/download.py --shards 1 # 빠른
 
 **런타임 양쪽에서 동일하게 동작** — Claude Code/Codex 어디서 실행하든 같은 트리거 분기.
 
-설치 가이드 전문: `docs/install-korean-persona.md`. 보강 개요: `docs/korean-persona-injection.md`. 검증 산출물: `_workspace/comparison_test/01_team_output_comparison.md`.
+설치 가이드 전문: [`docs/quickstart-korean-persona.md`](docs/quickstart-korean-persona.md). thesis·clawfit 연결: [`docs/why-data-grounded-synthetic.md`](docs/why-data-grounded-synthetic.md). 박제된 산출물: [`examples/korean-persona/`](examples/korean-persona/).
 
 ## 요구사항
 

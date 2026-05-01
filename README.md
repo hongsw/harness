@@ -287,34 +287,30 @@ Key finding: effectiveness scales with task complexity — the harder the task, 
 
 > Full paper: *Hwang, M. (2026). Harness: Structured Pre-Configuration for Enhancing LLM Code Agent Output Quality.*
 
-## Korean Persona Injection (fork branch — PR pending)
+## Korean Persona Injection (this fork)
 
-The fork [`hongsw/harness:feat/korean-persona-injection`](https://github.com/hongsw/harness/tree/feat/korean-persona-injection) adds 3 non-invasive skills that inject **NVIDIA Nemotron-Personas-Korea** (1M rows, CC BY 4.0) into harness-generated agents at runtime — yielding agent definitions whose voice, workplace manner, generational vocabulary and cultural cues actually read as Korean.
+This fork [`hongsw/harness`](https://github.com/hongsw/harness) adds 3 non-invasive skills that inject **NVIDIA Nemotron-Personas-Korea** (1M rows, CC BY 4.0) into harness-generated agents at runtime — yielding agent definitions whose voice, workplace manner, generational vocabulary and cultural cues actually read as Korean. The personas are **data-grounded synthetic** (LLM-generated, demographically aligned with real Korean distribution), not actual human responses.
 
-A blind comparison of the same 5-person standup-meeting task (102 vs 103 lines, same LLM, same workload) showed the persona-injected team produced richer voice differentiation (5 distinguishable speakers vs 5 indistinct), 4 inter-personal exchanges vs 0 (mentoring, gratitude, family-aware on-call negotiation), and Korean-specific manners (단정 회피, 컨펌 톤, 우회 표현) that the generic team did not produce. See [`_workspace/comparison_test/01_team_output_comparison.md`](_workspace/comparison_test/01_team_output_comparison.md).
+> **Why this matters** — see [`docs/why-data-grounded-synthetic.md`](docs/why-data-grounded-synthetic.md): real-persona-grounded harness is *eval substrate differentiation*, not just content flavor. It connects directly to recommendation engines like [`hongsw/clawfit`](https://github.com/hongsw/clawfit).
 
-### Install (until upstream merges, install from the fork)
+> **Sample outputs** — see [`examples/korean-persona/`](examples/korean-persona/): preserved baseline-vs-grounded comparisons. Currently 1 scenario (backend developer); contributions of more scenarios welcome.
 
+A blind comparison of the same 5-person standup-meeting task (102 vs 103 lines, same LLM, same workload) showed the persona-injected team produced richer voice differentiation (5 distinguishable speakers vs 5 indistinct), 4 inter-personal exchanges vs 0 (mentoring, gratitude, family-aware on-call negotiation), and Korean-specific manners (단정 회피, 컨펌 톤, 우회 표현) that the generic team did not produce.
+
+### Install — see [`docs/quickstart-korean-persona.md`](docs/quickstart-korean-persona.md) for the full guide
+
+Quick path (Claude Code marketplace):
+```
+/plugin marketplace add hongsw/harness
+/plugin install harness-korean@harness-korean-marketplace
+```
+
+Or one-liner (both runtimes):
 ```bash
-# Clone the fork branch and run the one-liner installer
-git clone -b feat/korean-persona-injection https://github.com/hongsw/harness.git
-cd harness
-./scripts/install-korean-persona.sh --target both     # Claude Code + Codex CLI
-
-# OR install directly via Codex's skill-installer
-python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
-    --repo hongsw/harness \
-    --path skills/korean-persona-search \
-    --path skills/korean-voice-adapter \
-    --path skills/korean-persona-harness
-
-# OR add the fork as a Claude Code plugin marketplace
-# /plugin marketplace add hongsw/harness
-# /plugin install harness-korean@harness-korean-marketplace
-
-# Dataset cache (~few GB, shared between both runtimes; first run only)
+git clone https://github.com/hongsw/harness.git && cd harness
+./scripts/install-korean-persona.sh --target both       # Claude Code + Codex CLI
 pip install huggingface_hub pyarrow
-python3 $SKILL_DIR/korean-persona-search/scripts/download.py
+python3 skills/korean-persona-search/scripts/download.py  # Dataset cache, first run only
 ```
 
 ### Choose your run mode — generic English agents vs. Korean persona agents
@@ -329,7 +325,7 @@ Once installed, **both harnesses coexist**. Pick by intent (or invoke explicitly
 
 The two skills are auto-routed by description keywords — Korean-persona terms (한국어 페르소나, 한국 시나리오, Nemotron Korea) trigger the new skill; everything else falls back to the original `harness`. State the language explicitly when in doubt.
 
-Compatible with **both Claude Code and Codex CLI** (same SKILL.md format). Details in `docs/korean-persona-injection.md` and `docs/install-korean-persona.md`. The Korean README ([README_KO.md](README_KO.md)) has the full breakdown including the comparison table and verbatim Korean dialogue examples.
+Compatible with **both Claude Code and Codex CLI** (same SKILL.md format). Details in [`docs/quickstart-korean-persona.md`](docs/quickstart-korean-persona.md) and [`docs/why-data-grounded-synthetic.md`](docs/why-data-grounded-synthetic.md). The Korean README ([README_KO.md](README_KO.md)) has the full breakdown including the comparison table and verbatim Korean dialogue examples.
 
 ## Requirements
 
